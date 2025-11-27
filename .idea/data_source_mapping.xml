@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/27ace450-b0a7-4efa-872c-9f25e74d9803/console.sql" value="27ace450-b0a7-4efa-872c-9f25e74d9803" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/27ace450-b0a7-4efa-872c-9f25e74d9803/console_1.sql" value="27ace450-b0a7-4efa-872c-9f25e74d9803" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/6a9b7c93-299f-45d7-a303-f031cc1cf363/console.sql" value="6a9b7c93-299f-45d7-a303-f031cc1cf363" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/6a9b7c93-299f-45d7-a303-f031cc1cf363/console_1.sql" value="6a9b7c93-299f-45d7-a303-f031cc1cf363" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/6a9b7c93-299f-45d7-a303-f031cc1cf363/console_2.sql" value="6a9b7c93-299f-45d7-a303-f031cc1cf363" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/c998faaf-8fe5-46a6-ba15-3c7f83b5b776/console.sql" value="c998faaf-8fe5-46a6-ba15-3c7f83b5b776" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/c998faaf-8fe5-46a6-ba15-3c7f83b5b776/console_1.sql" value="c998faaf-8fe5-46a6-ba15-3c7f83b5b776" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/c998faaf-8fe5-46a6-ba15-3c7f83b5b776/console_2.sql" value="c998faaf-8fe5-46a6-ba15-3c7f83b5b776" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/c998faaf-8fe5-46a6-ba15-3c7f83b5b776/console_3.sql" value="c998faaf-8fe5-46a6-ba15-3c7f83b5b776" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/c998faaf-8fe5-46a6-ba15-3c7f83b5b776/console_4.sql" value="c998faaf-8fe5-46a6-ba15-3c7f83b5b776" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/c998faaf-8fe5-46a6-ba15-3c7f83b5b776/console_5.sql" value="c998faaf-8fe5-46a6-ba15-3c7f83b5b776" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/c998faaf-8fe5-46a6-ba15-3c7f83b5b776/console_6.sql" value="c998faaf-8fe5-46a6-ba15-3c7f83b5b776" />
+  </component>
+</project>

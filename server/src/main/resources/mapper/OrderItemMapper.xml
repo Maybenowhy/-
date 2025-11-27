@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.an.mapper.OrderItemMapper">
+
+    <insert id="insert" parameterType="com.an.entity.OrderItem" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO order_items(order_id, product_id, unit_price, quantity, subtotal, created_at)
+        VALUES (#{orderId}, #{productId}, #{unitPrice}, #{quantity}, #{subtotal}, #{createdAt});
+    </insert>
+
+    <select id="listByOrderId" resultType="com.an.entity.OrderItem">
+        SELECT * FROM order_items WHERE order_id = #{orderId}
+    </select>
+
+    <select id="topSales" resultType="com.an.vo.TopProductVO">
+        SELECT
+            oi.product_id AS productId,
+            p.name AS productName,
+            SUM(oi.quantity) AS totalQuantity,
+            SUM(oi.quantity * oi.unit_price) AS totalRevenue
+        FROM order_items oi
+                 LEFT JOIN products p ON oi.product_id = p.id
+        GROUP BY oi.product_id, p.name
+        ORDER BY totalQuantity DESC
+            LIMIT #{limit}
+    </select>
+
+</mapper>

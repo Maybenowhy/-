@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.an.mapper.UserMapper">
+    <!-- 插入新用户：注册时保存用户信息 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users (
+        username,
+        password_hash,
+        email,
+        phone,
+        role,
+        created_at,
+        updated_at
+        ) VALUES (
+        #{username},
+        #{passwordHash},
+        #{email},
+        #{phone},
+        #{role},  <!-- 角色枚举的value（对应数据库的customer/staff） -->
+        #{createdAt},
+        #{updatedAt}
+        )
+    </insert>
+    <!-- 物理删除用户 -->
+    <delete id="delete">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+    <!-- 根据用户名或邮箱查询用户 -->
+    <select id="selectByUsernameOrEmail" resultType="com.an.entity.User">
+        SELECT id, username, password_hash, email, role, phone, created_at, updated_at, last_login
+        FROM users
+        WHERE username = #{account} OR email = #{account}
+    </select>
+
+    <!-- 更新用户信息 -->
+    <update id="updateUser">
+        UPDATE users
+        SET
+            username = #{username},
+            email = #{email},
+            role = #{role},
+            updated_at = #{updatedAt}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户状态 -->
+    <update id="updateStatus">
+        UPDATE users
+        SET status = #{status},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <!-- 更新最后登录时间 -->
+    <update id="updateLastLogin">
+        UPDATE users
+        SET last_login = #{lastLogin}, updated_at = #{lastLogin}
+        WHERE id = #{userId}
+    </update>
+    <update id="updateLastLogoutTime">
+        UPDATE users
+        SET last_logout_time = #{lastLogoutTime},
+            updated_at = #{updatedAt}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 分页/条件查询 -->
+    <select id="list" resultType="com.an.entity.User">
+        SELECT *
+        FROM users
+        WHERE 1=1
+        <if test="username != null and username != ''">
+            AND username LIKE CONCAT('%', #{username}, '%')
+        </if>
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="getById" resultType="com.an.entity.User">
+        SELECT *
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <!-- 模糊搜索用户名或邮箱 -->
+    <select id="search" resultType="com.an.entity.User">
+        SELECT *
+        FROM users
+        WHERE username LIKE CONCAT('%', #{usernameOrEmail}, '%')
+           OR email LIKE CONCAT('%', #{usernameOrEmail}, '%')
+    </select>
+
+</mapper>

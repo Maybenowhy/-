@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.an.mapper.ProductMapper">
+    <!-- 通用字段映射 -->
+    <resultMap id="productMap" type="com.an.entity.Product">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="description" column="description"/>
+        <result property="price" column="price"/>
+        <result property="stockQuantity" column="stock_quantity"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="isActive" column="is_active"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <!-- ① 查询商品列表 -->
+    <select id="list" parameterType="com.an.entity.Product" resultMap="productMap">
+        SELECT *
+        FROM products
+        WHERE 1 = 1
+        <if test="categoryId != null">
+            AND category_id = #{categoryId}
+        </if>
+        <if test="isActive != null">
+            AND is_active = #{isActive}
+        </if>
+        AND stock_quantity > 0
+        ORDER BY created_at DESC
+    </select>
+
+    <!-- ② 根据ID查商品详情 -->
+    <select id="getById" parameterType="long" resultMap="productMap">
+        SELECT * FROM products WHERE id = #{id}
+    </select>
+
+    <insert id="add" parameterType="com.an.entity.Product" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO products
+        (name, description, price, stock_quantity, category_id, image_url, is_active, created_at, updated_at)
+        VALUES
+            (#{name}, #{description}, #{price}, #{stockQuantity}, #{categoryId},
+             #{imageUrl}, #{isActive}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="com.an.entity.Product">
+        UPDATE products
+        SET
+            name = #{name},
+            description = #{description},
+            price = #{price},
+            stock_quantity = #{stockQuantity},
+            category_id = #{categoryId},
+            image_url = #{imageUrl},
+            is_active = #{isActive},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="softDelete" parameterType="long">
+        DELETE FROM products WHERE id = #{id}
+    </delete>
+
+    <update id="batchUpdateActive">
+        UPDATE products
+        SET is_active = #{isActive}, updated_at = NOW()
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="updateStock">
+        UPDATE products SET stock_quantity = #{stockQuantity}, updated_at = NOW()
+        WHERE id = #{productId}
+    </update>
+
+    <select id="search" parameterType="com.an.entity.Product" resultMap="productMap">
+        SELECT *
+        FROM products
+        WHERE 1 = 1
+        <if test="name != null and name != ''">
+            AND name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="categoryId != null">
+            AND category_id = #{categoryId}
+        </if>
+        ORDER BY updated_at DESC
+    </select>
+    <!-- 分页查询商品列表 -->
+    <select id="pageQuery" parameterType="map" resultMap="productMap">
+        SELECT *
+        FROM products
+        WHERE stock_quantity > 0  <!-- 过滤库存为0的商品 -->
+        ORDER BY created_at DESC
+        LIMIT #{offset}, #{pageSize}
+    </select>
+    <!-- 统计符合条件的商品总数 -->
+    <select id="countByCondition" parameterType="com.an.entity.Product" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM products
+        WHERE stock_quantity > 0  <!-- 同样的过滤条件 -->
+    </select>
+
+
+</mapper>

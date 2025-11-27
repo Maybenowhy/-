@@ -1,0 +1,71 @@
+{
+  "groups": [
+    {
+      "name": "sky.alioss",
+      "type": "com.an.properties.AliOssProperties",
+      "sourceType": "com.an.properties.AliOssProperties"
+    },
+    {
+      "name": "sky.jwt",
+      "type": "com.an.properties.JwtProperties",
+      "sourceType": "com.an.properties.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "sky.alioss.access-key-id",
+      "type": "java.lang.String",
+      "sourceType": "com.an.properties.AliOssProperties"
+    },
+    {
+      "name": "sky.alioss.access-key-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.an.properties.AliOssProperties"
+    },
+    {
+      "name": "sky.alioss.bucket-name",
+      "type": "java.lang.String",
+      "sourceType": "com.an.properties.AliOssProperties"
+    },
+    {
+      "name": "sky.alioss.endpoint",
+      "type": "java.lang.String",
+      "sourceType": "com.an.properties.AliOssProperties"
+    },
+    {
+      "name": "sky.jwt.admin-secret-key",
+      "type": "java.lang.String",
+      "description": "管理端员工生成jwt令牌相关配置",
+      "sourceType": "com.an.properties.JwtProperties"
+    },
+    {
+      "name": "sky.jwt.admin-token-name",
+      "type": "java.lang.String",
+      "sourceType": "com.an.properties.JwtProperties"
+    },
+    {
+      "name": "sky.jwt.admin-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "com.an.properties.JwtProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "sky.jwt.user-secret-key",
+      "type": "java.lang.String",
+      "description": "用户端微信用户生成jwt令牌相关配置",
+      "sourceType": "com.an.properties.JwtProperties"
+    },
+    {
+      "name": "sky.jwt.user-token-name",
+      "type": "java.lang.String",
+      "sourceType": "com.an.properties.JwtProperties"
+    },
+    {
+      "name": "sky.jwt.user-ttl",
+      "type": "java.lang.Long",
+      "sourceType": "com.an.properties.JwtProperties",
+      "defaultValue": 0
+    }
+  ],
+  "hints": []
+}
